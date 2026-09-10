@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>Posts — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/post-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/posts.js" defer></script>
+  </head>
+  <body data-page="posts">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="app-header"></header>
+    <div class="posts-shell">
+      <aside class="posts-sidebar">
+        <button
+          type="button"
+          class="panel-kicker topics-toggle"
+          id="toggle-topics"
+          aria-expanded="true"
+          aria-controls="topic-list"
+        >
+          <span>TOPICS</span><span data-icon="chevron-up" id="toggle-topics-icon"></span>
+        </button>
+        <div id="topic-list" class="topic-list"></div>
+      </aside>
+      <main class="workspace-main posts-main" id="main-content">
+        <div class="posts-toolbar">
+          <label class="search-field posts-search" for="post-search"
+            ><span data-icon="search"></span
+            ><input
+              id="post-search"
+              type="search"
+              placeholder="Search posts…"
+              aria-label="Search posts"
+          /></label>
+          <button type="button" class="button primary" id="new-post-button">
+            + NEW POST
+          </button>
+        </div>
+
+        <div class="hashtag-filter" id="hashtag-filter" hidden>
+          <span data-icon="hashtag"></span>
+          <span id="hashtag-filter-label"></span>
+          <button type="button" id="clear-hashtag-filter" aria-label="Clear hashtag filter">×</button>
+        </div>
+
+        <div id="posts-feed" class="posts-feed"></div>
+      </main>
+    </div>
+    <footer id="app-footer"></footer>
+
+    <dialog id="post-dialog">
+      <form id="post-form">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="post-dialog-title">New post.</h2>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="close-post"
+            aria-label="Close post form"
+          >
+            ×
+          </button>
+        </div>
+        <label for="post-title">TITLE</label
+        ><input
+          id="post-title"
+          maxlength="140"
+          placeholder="What's this about?"
+          required
+        />
+        <label for="post-body">BODY</label
+        ><textarea
+          id="post-body"
+          rows="5"
+          placeholder="Share what's on your mind…"
+          required
+        ></textarea>
+        <label for="post-hashtags"
+          >HASHTAGS <span class="muted">(SPACE-SEPARATED, OPTIONAL)</span></label
+        ><input
+          id="post-hashtags"
+          placeholder="journaling productivity"
+        />
+        <label for="post-image"
+          >IMAGE URL <span class="muted">(OPTIONAL)</span></label
+        ><input
+          id="post-image"
+          type="url"
+          placeholder="https://images.unsplash.com/…"
+        />
+        <p class="form-error" id="post-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" id="cancel-post" class="button secondary">
+            CANCEL</button
+          ><button type="submit" class="button primary">SAVE POST ↗</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>

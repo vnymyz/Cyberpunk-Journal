@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>Create your space — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/chat-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/auth.js" defer></script>
+  </head>
+  <body data-page="register">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="public-header"></header>
+    <main class="auth-layout" id="main-content">
+      <section class="auth-story">
+        <h1>MAKE SPACE.<br />MAKE <em>PROGRESS.</em></h1>
+        <p>
+          Your plans. Your thoughts. Your story.<br />One place to bring it all
+          together.
+        </p>
+        <div class="auth-decoration" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <span class="orbit-label">C J</span
+          ><span class="orbit-caption">NEW CHAPTER / INITIALIZING</span>
+        </div>
+        <span class="tiny">EVERY GOOD STORY STARTS SOMEWHERE.</span>
+      </section>
+      <section class="auth-panel">
+        <div class="panel-kicker">
+          <span>ACCESS TERMINAL</span><span>02 / REGISTER</span>
+        </div>
+        <h2>Create your space.</h2>
+        <p class="muted">A new chapter starts with you.</p>
+        <form id="auth-form" novalidate>
+          <label for="display-name">WHAT SHOULD WE CALL YOU?</label
+          ><input
+            id="display-name"
+            name="name"
+            autocomplete="nickname"
+            placeholder="Your name"
+            maxlength="40"
+            required
+          /><label for="email">EMAIL ADDRESS</label
+          ><input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          /><label for="password">DEMO PASSWORD</label>
+          <div class="password-field">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="At least 8 characters"
+              minlength="8"
+              required
+            /><button
+              class="password-toggle"
+              type="button"
+              data-toggle="password"
+              aria-label="Show password"
+            >
+              SHOW
+            </button>
+          </div>
+          <label for="confirm-password">CONFIRM PASSWORD</label
+          ><input
+            id="confirm-password"
+            name="confirm"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Repeat your demo password"
+            required
+          />
+          <p id="auth-error" class="form-error" role="alert"></p>
+          <button class="button primary full-width" type="submit">
+            CREATE MY SPACE <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+        <p class="auth-switch">
+          Already have a space? <a href="login.html">Log in</a>
+        </p>
+        <p class="demo-disclaimer">
+          LOCAL DEMO — This simulates registration. No account is created and no
+          password is saved. Do not use this demo for sensitive diary content.
+        </p>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>

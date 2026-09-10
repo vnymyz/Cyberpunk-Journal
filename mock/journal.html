@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>Journal — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/chat-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/journal.js" defer></script>
+  </head>
+  <body data-page="journal">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="app-header"></header>
+    <main class="workspace-main" id="main-content">
+      <div class="page-heading">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="planner.html">PERSONAL WORKSPACE</a
+          ><span class="breadcrumb-sep" aria-hidden="true">/</span
+          ><span aria-current="page">REFLECT</span>
+        </nav>
+        <button class="button primary" id="new-entry">+ NEW ENTRY</button>
+      </div>
+      <div class="journal-layout">
+        <aside class="entry-sidebar">
+          <div class="panel-kicker">
+            <span>ENTRIES</span
+            ><button
+              id="toggle-entries"
+              class="icon-button"
+              type="button"
+              aria-expanded="true"
+              aria-controls="entries-body"
+            >
+              <span id="toggle-entries-label">HIDE</span>
+              <span data-icon="journal"></span>
+            </button>
+          </div>
+          <div id="entries-body">
+            <label class="search-field" for="entry-search"
+              ><span data-icon="search"></span
+              ><input
+                id="entry-search"
+                type="search"
+                placeholder="Search your thoughts…"
+                aria-label="Search journal entries"
+            /></label>
+            <div class="list-heading">
+              <span>ALL ENTRIES</span><span id="entry-total">00</span>
+            </div>
+            <div id="entry-list" class="entry-list"></div>
+            <div class="sidebar-footnote">
+              <span data-icon="lock"></span> STORED IN THIS BROWSER ONLY
+            </div>
+          </div>
+        </aside>
+        <section class="journal-editor panel">
+          <div class="editor-top">
+            <span id="entry-mode" class="tiny">PERSONAL LOG</span
+            ><span id="save-status" role="status">ALL CHANGES SAVED</span>
+          </div>
+          <form id="journal-form">
+            <label class="sr-only" for="entry-title">Entry title</label
+            ><input
+              class="entry-title"
+              id="entry-title"
+              placeholder="Give this moment a title…"
+              maxlength="120"
+              required
+            />
+            <div class="entry-meta">
+              <div>
+                <label for="entry-date">DATE</label
+                ><input id="entry-date" type="date" required />
+              </div>
+              <div>
+                <label for="entry-mood">MOOD</label
+                ><select id="entry-mood">
+                  <option value="">How are you feeling?</option>
+                  <option>Inspired</option>
+                  <option>Calm</option>
+                  <option>Happy</option>
+                  <option>Reflective</option>
+                  <option>Tired</option>
+                  <option>Overwhelmed</option>
+                </select>
+              </div>
+            </div>
+            <div class="editor-rule">
+              <span>YOUR STORY, UNFILTERED.</span><span>PLAIN TEXT</span>
+            </div>
+            <label class="sr-only" for="entry-body">Journal body</label
+            ><textarea
+              id="entry-body"
+              placeholder="Start anywhere. This page is yours."
+              required
+            ></textarea>
+            <p id="entry-error" class="form-error" role="alert"></p>
+            <div class="editor-bottom">
+              <span id="word-count" class="tiny">0 WORDS</span>
+              <div class="button-group">
+                <button type="button" id="delete-entry" class="button danger">
+                  DELETE</button
+                ><button type="submit" class="button primary">
+                  SAVE ENTRY <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer id="app-footer"></footer>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>

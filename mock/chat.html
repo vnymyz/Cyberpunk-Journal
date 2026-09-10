@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>Chat — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/chat-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/chat.js" defer></script>
+  </head>
+  <body data-page="chat">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="app-header"></header>
+    <main class="workspace-main" id="main-content">
+      <nav class="breadcrumb page-breadcrumb" aria-label="Breadcrumb">
+        <a href="planner.html">PERSONAL WORKSPACE</a
+        ><span class="breadcrumb-sep" aria-hidden="true">/</span
+        ><span aria-current="page">CONNECT</span>
+      </nav>
+      <div class="chat-layout">
+        <aside class="contact-sidebar">
+          <div class="panel-kicker">
+            <span>CONTACTS</span
+            ><button
+              id="toggle-contacts"
+              class="icon-button"
+              type="button"
+              aria-expanded="true"
+              aria-controls="contacts-body"
+            >
+              <span id="toggle-contacts-label">HIDE</span>
+              <span data-icon="chat"></span>
+            </button>
+          </div>
+          <div id="contacts-body">
+            <label class="search-field" for="contact-search"
+              ><span data-icon="search"></span
+              ><input
+                id="contact-search"
+                type="search"
+                placeholder="Find a contact…"
+                aria-label="Search contacts"
+            /></label>
+            <div class="list-heading">
+              <span>ALL CONTACTS</span><span id="contact-total">00</span>
+            </div>
+            <div id="contact-list" class="contact-list"></div>
+          </div>
+        </aside>
+        <section class="chat-thread panel">
+          <div class="thread-header" id="thread-header" hidden>
+            <div class="thread-identity">
+              <span class="avatar-tile" id="thread-avatar" aria-hidden="true"
+                ><span class="avatar-glitch"></span
+                ><span class="avatar-initials" id="thread-initials"></span
+              ></span>
+              <div>
+                <h2 id="thread-name"></h2>
+                <span class="presence-label" id="thread-status"></span>
+              </div>
+            </div>
+            <div class="thread-actions">
+              <button type="button" class="icon-button" id="poke-button">
+                <span data-icon="poke"></span> POKE
+              </button>
+              <button type="button" class="icon-button" id="call-button">
+                <span data-icon="phone"></span> CALL
+              </button>
+              <button type="button" class="icon-button test-action" id="test-incoming-button">
+                <span data-icon="phone"></span> TEST INCOMING CALL
+              </button>
+            </div>
+          </div>
+          <div class="thread-empty" id="thread-empty">
+            <p>Select a contact to start talking.</p>
+          </div>
+          <div class="thread-feed" id="thread-feed" hidden></div>
+          <form class="thread-composer" id="thread-composer" hidden>
+            <label class="sr-only" for="message-input">Message</label
+            ><input
+              id="message-input"
+              type="text"
+              placeholder="Type a message…"
+              autocomplete="off"
+              maxlength="500"
+            /><button type="submit" class="button primary compact" id="send-button">
+              <span data-icon="send"></span> SEND
+            </button>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer id="app-footer"></footer>
+
+    <div
+      class="call-overlay"
+      id="call-overlay"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="call-name"
+    >
+      <div class="call-card">
+        <button
+          type="button"
+          class="call-close"
+          id="call-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div class="call-portrait" aria-hidden="true">
+          <span class="portrait-glitch one"></span>
+          <span class="portrait-glitch two"></span>
+          <span class="portrait-core" id="call-initials"></span>
+        </div>
+        <span class="call-status" id="call-status">INCOMING CALL</span>
+        <h2 id="call-name">Nova Reyes</h2>
+        <div class="call-actions" id="call-actions-outgoing" hidden>
+          <button type="button" class="call-action reject" id="call-cancel">
+            <span class="call-key">C</span> CANCEL
+          </button>
+        </div>
+        <div class="call-actions" id="call-actions-incoming">
+          <button type="button" class="call-action reject" id="call-reject">
+            <span class="call-key">R</span> REJECT
+          </button>
+          <button type="button" class="call-action answer" id="call-answer">
+            <span class="call-key">A</span> ANSWER
+          </button>
+        </div>
+        <div class="call-actions" id="call-actions-connected" hidden>
+          <span class="call-timer" id="call-timer">00:00</span>
+          <button type="button" class="call-action hangup" id="call-hangup">
+            <span class="call-key">E</span> END CALL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="call-idle"
+      id="call-idle"
+      hidden
+      role="status"
+      aria-label="Incoming call, idle"
+    >
+      <span class="call-idle-avatar" id="idle-initials" aria-hidden="true"></span>
+      <div class="call-idle-body">
+        <span class="call-idle-label">INCOMING CALL</span>
+        <strong id="idle-name"></strong>
+      </div>
+      <div class="call-idle-actions">
+        <button type="button" class="call-idle-btn reject" id="idle-reject" aria-label="Reject call">
+          <span data-icon="phone-off"></span>
+        </button>
+        <button type="button" class="call-idle-btn answer" id="idle-answer" aria-label="Answer call">
+          <span data-icon="phone"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>

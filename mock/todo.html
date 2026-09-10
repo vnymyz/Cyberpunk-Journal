@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>To-do & calendar — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/chat-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/todo.js" defer></script>
+  </head>
+  <body data-page="todo">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="app-header"></header>
+    <main class="workspace-main" id="main-content">
+      <div class="page-heading">
+        <div>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="planner.html">PERSONAL WORKSPACE</a
+            ><span class="breadcrumb-sep" aria-hidden="true">/</span
+            ><span aria-current="page">TAKE ACTION</span>
+          </nav>
+          <h1>MAKE IT <span>HAPPEN.</span></h1>
+          <p>A plan for the day. Space for everything else.</p>
+        </div>
+        <button id="new-task" class="button primary">+ NEW TASK</button>
+      </div>
+      <div class="todo-layout">
+        <section class="calendar-panel panel">
+          <div class="panel-kicker">
+            <span>YOUR CALENDAR</span
+            ><button
+              id="toggle-calendar"
+              class="icon-button"
+              type="button"
+              aria-expanded="true"
+              aria-controls="calendar-body"
+            >
+              <span id="toggle-calendar-label">HIDE</span>
+              <span data-icon="calendar"></span>
+            </button>
+          </div>
+          <div class="calendar-toolbar">
+            <h2 id="calendar-month"></h2>
+            <div class="calendar-controls">
+              <button
+                id="previous-month"
+                class="icon-button"
+                aria-label="Previous month"
+              >
+                ‹</button
+              ><button id="calendar-today" class="button compact secondary">
+                TODAY</button
+              ><button
+                id="next-month"
+                class="icon-button"
+                aria-label="Next month"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+          <div id="calendar-body">
+            <div class="weekdays" aria-hidden="true">
+              <span>MON</span><span>TUE</span><span>WED</span><span>THU</span
+              ><span>FRI</span><span>SAT</span><span>SUN</span>
+            </div>
+            <div
+              id="calendar-grid"
+              class="calendar-grid"
+              aria-label="Select a date"
+            ></div>
+            <div class="calendar-legend">
+              <span><i class="legend-dot cyan"></i> SELECTED</span
+              ><span><i class="legend-dot yellow"></i> HAS TASKS</span
+              ><span><i class="legend-ring"></i> TODAY</span>
+            </div>
+            <div class="month-summary">
+              <span class="tiny">THIS MONTH</span>
+              <div>
+                <strong id="month-total">0</strong><span>TASKS PLANNED</span
+                ><strong id="month-completed">0</strong><span>COMPLETED</span>
+              </div>
+            </div>
+            <p class="calendar-quote">A little progress, every day.</p>
+          </div>
+        </section>
+        <section class="tasks-panel">
+          <div class="task-heading">
+            <div>
+              <span class="eyebrow" id="selected-day-label">TODAY'S FOCUS</span>
+              <h2 id="selected-date-heading"></h2>
+            </div>
+            <span class="task-day-count" id="day-count"></span>
+          </div>
+          <div class="task-filters" role="group" aria-label="Filter tasks">
+            <button data-filter="all" class="active" aria-pressed="true">
+              ALL <span id="all-count">0</span></button
+            ><button data-filter="active" aria-pressed="false">
+              ACTIVE <span id="active-count">0</span></button
+            ><button data-filter="completed" aria-pressed="false">
+              COMPLETED <span id="completed-count">0</span>
+            </button>
+          </div>
+          <div id="task-list"></div>
+          <button id="inline-new-task" class="add-task-inline">
+            + ADD A TASK FOR THIS DAY
+          </button>
+          <div class="task-bottom-note">
+            <span data-icon="bolt"></span>
+            <p>
+              Focus on the next step.<br /><span
+                >Progress is progress, however small.</span
+              >
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer id="app-footer"></footer>
+    <dialog id="task-dialog">
+      <form id="task-form">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="task-dialog-title">New task.</h2>
+          </div>
+          <button
+            type="button"
+            class="icon-button"
+            id="close-task"
+            aria-label="Close task form"
+          >
+            ×
+          </button>
+        </div>
+        <label for="task-title">TASK TITLE</label
+        ><input
+          id="task-title"
+          maxlength="160"
+          placeholder="What do you want to get done?"
+          required
+        />
+        <div class="form-row">
+          <div>
+            <label for="task-date">DUE DATE</label
+            ><input type="date" id="task-date" required />
+          </div>
+          <div>
+            <label for="task-priority">PRIORITY</label
+            ><select id="task-priority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+        </div>
+        <label for="task-notes"
+          >NOTES <span class="muted">(OPTIONAL)</span></label
+        ><textarea
+          id="task-notes"
+          rows="4"
+          placeholder="A little more context…"
+        ></textarea>
+        <p class="form-error" id="task-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" id="cancel-task" class="button secondary">
+            CANCEL</button
+          ><button type="submit" class="button primary">SAVE TASK ↗</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>

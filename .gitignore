@@ -1,0 +1,12 @@
+.claude
+.remember
+concept
+design
+icons
+
+# Vercel CLI local project link (org/project IDs, machine-specific)
+.vercel
+
+# OS cruft
+.DS_Store
+Thumbs.db

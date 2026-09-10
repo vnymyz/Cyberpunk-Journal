@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta
+      name="description"
+      content="A cyberpunk-inspired personal planner, task tracker, and journal. Local interactive demo."
+    />
+    <title>Log in — Choomies</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/data/chat-seed.js" defer></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/auth.js" defer></script>
+  </head>
+  <body data-page="login">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <header id="public-header"></header>
+    <main class="auth-layout" id="main-content">
+      <section class="auth-story">
+        <h1>YOUR DAY.<br />YOUR <em>WAY.</em></h1>
+        <p>Pick up where you left off.<br />Your next chapter is waiting.</p>
+        <div class="auth-decoration" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <span class="orbit-label">C J</span
+          ><span class="orbit-caption">PERSONAL SYSTEM / ONLINE</span>
+        </div>
+        <span class="tiny">PLAN WITH INTENTION. LIVE WITH PURPOSE.</span>
+      </section>
+      <section class="auth-panel">
+        <div class="panel-kicker">
+          <span>ACCESS TERMINAL</span><span>01 / LOGIN</span>
+        </div>
+        <h2>Welcome back.</h2>
+        <p class="muted">Connect to your personal workspace.</p>
+        <form id="auth-form" novalidate>
+          <label for="email">EMAIL ADDRESS</label
+          ><input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          /><label for="password">PASSWORD</label>
+          <div class="password-field">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required
+              minlength="8"
+            /><button
+              class="password-toggle"
+              type="button"
+              data-toggle="password"
+              aria-label="Show password"
+            >
+              SHOW
+            </button>
+          </div>
+          <p id="auth-error" class="form-error" role="alert"></p>
+          <button class="button primary full-width" type="submit">
+            LOG IN <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+        <div class="or-divider">OR EXPLORE FIRST</div>
+        <button
+          id="demo-access"
+          class="button secondary full-width"
+          type="button"
+        >
+          ENTER DEMO WORKSPACE
+        </button>
+        <p class="auth-switch">
+          New here? <a href="register.html">Create your space</a>
+        </p>
+        <p class="demo-disclaimer">
+          DEMO MODE — No real account or password verification. Use sample
+          details, not a real password. Data stays in this browser.
+        </p>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript
+      ><p class="noscript">
+        Enable JavaScript to use this interactive local demo.
+      </p></noscript
+    >
+  </body>
+</html>
