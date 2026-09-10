@@ -13,7 +13,7 @@
     journal: STORAGE_PREFIX + "journal",
     contacts: STORAGE_PREFIX + "contacts2",
     threads: STORAGE_PREFIX + "threads2",
-    posts: STORAGE_PREFIX + "posts4",
+    posts: STORAGE_PREFIX + "posts5",
     session: STORAGE_PREFIX + "session",
   };
 
@@ -306,7 +306,7 @@
     if (readJSON(KEYS.threads, null) === null) {
       writeJSON(KEYS.threads, buildSeedThreads());
     }
-    if (readJSON(KEYS.posts, null) === null) {
+    if (readJSON(KEYS.posts, null) === null && window.CJ_POST_SEED) {
       writeJSON(KEYS.posts, buildSeedPosts());
     }
   }
